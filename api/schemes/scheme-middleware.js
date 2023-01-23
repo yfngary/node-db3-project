@@ -33,7 +33,18 @@ const checkSchemeId = async (req, res, next) => {
   }
 */
 const validateScheme = (req, res, next) => {
-
+  if (
+    req.body.scheme_name === undefined ||
+    typeof req.body.scheme_name != 'string' ||
+    !req.body.scheme_name.trim()
+  ) {
+    next({
+      status: 400,
+      message: 'invalid scheme_name'
+    })
+  } else {
+    next()
+  }
 }
 
 /*
@@ -46,7 +57,13 @@ const validateScheme = (req, res, next) => {
   }
 */
 const validateStep = (req, res, next) => {
-
+  const { instructions, step_number } = req.body
+  const error = { status: 400 }
+  if (instructions === undefined ||
+    typeof instructions != 'string' ||
+    !instructions.trim()) {
+      
+  }
 }
 
 module.exports = {
